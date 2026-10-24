@@ -1,0 +1,46 @@
+HOW TO USE: brain-drift
+=======================
+
+PURPOSE
+  Audit your codebase and your Second Brain against each other to identify
+  discrepancies: code that breaks your documented rules, or old memories that
+  no longer match reality.
+
+CAPABILITIES
+  - Pulls canonical project constraints and architecture rules from Second Brain
+  - Audits codebase configuration and source files for compliance
+  - Flags rule violations in the code before they cause production bugs
+  - Identifies obsolete or contradictory memories that need deprecation or updating
+  - Generates ready-to-run fix commands for both code and memories
+
+USE CASES
+  - "Has this codebase drifted away from the architecture we planned?"
+  - After a major refactor, verifying which documentation memories are outdated
+  - Ensuring new code changes don't violate hard hardware or runtime constraints
+
+IDEAS
+  - Run `/brain-drift` before starting a major sprint to catch outdated assumptions
+  - Use it after updating library versions or port architectures
+
+PROMPTS YOU CAN PASTE
+  /brain-drift
+
+  /brain-drift Live Actions
+
+EXAMPLE FLOW
+  You:   /brain-drift
+  Agent: [Queries rules from brain, scans codebase]
+         🔍 Brain Drift Alignment Report:
+         ⚠️ Code Drift:
+           - live-actions-bridge.js imports 'ws' directly, but brain rule mem_1a89b2 states to keep zero external Node dependencies in the bridge.
+         🔄 Memory Drift:
+           - mem_3f4e1a says "UI connects on port 8080", but package.json script now launches Vite on port 5173.
+         Remediation:
+           - Update memory 3f4e1a to port 5173?
+  You:   yes
+  Agent: [Updates memory content immediately and confirms]
+
+DEFAULT GOALS IF YOU DON'T NAME ONE
+  1. Retrieve active project rules from Second Brain
+  2. Scan codebase for rule breaches
+  3. Scan memories for factual obsolescence and output fix report
